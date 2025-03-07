@@ -10,4 +10,5 @@
 ### Architecture
 Stating with a simple but functional design
 
-![image](https://github.com/user-attachments/assets/d944f9f2-12b7-4c7d-8b4a-3f0269c50026)
+![image](https://github.com/user-attachments/assets/34729985-fc49-4502-93cb-aef6666a3291)
+

@@ -4,7 +4,7 @@ import com.mateus.WhatsAppBackend.auth.dto.AuthRequest;
 import com.mateus.WhatsAppBackend.auth.dto.AuthResponse;
 import com.mateus.WhatsAppBackend.auth.model.Role;
 import com.mateus.WhatsAppBackend.auth.model.User;
-import com.mateus.WhatsAppBackend.auth.repository.UserRepository;
+import com.mateus.WhatsAppBackend.user.repository.UserRepository;
 import com.mateus.WhatsAppBackend.auth.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 

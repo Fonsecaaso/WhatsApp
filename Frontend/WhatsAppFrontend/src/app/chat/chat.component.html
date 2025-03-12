@@ -1,0 +1,29 @@
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="!errorMessage">
+  <!-- Lista de usuários -->
+  <ul>
+    <li *ngFor="let user of users">
+      <button (click)="startConversation(user)">
+        {{ user }}
+      </button>
+    </li>
+  </ul>
+
+  <!-- Container do chat -->
+  <div *ngIf="messages.length" class="chat-container">
+    <div *ngFor="let message of messages" 
+         [ngClass]="{ 'received': message.sender !== authService.getUsername(), 'sent': message.sender === authService.getUsername() }">
+      {{ message.message }}
+    </div>
+  </div>
+  
+
+  <!-- Caixa de texto para mensagem e botão de enviar -->
+  <div *ngIf="lastRecipient" class="message-input-container">
+    <textarea [(ngModel)]="messageText" placeholder="Digite sua mensagem..." rows="3"></textarea>
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

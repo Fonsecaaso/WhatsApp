@@ -1,26 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service'; // Importar o serviço de cookies
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:8080/auth';
+  private usersApiUrl = 'http://localhost:8080/users';
+  private tokenKey = 'auth_token';
 
-  private apiUrl = 'http://localhost:8080/auth'; // URL base da API
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  constructor(private http: HttpClient) {}
-
-  // Método para fazer o signup
   signup(data: any): Observable<any> {
     console.log('Chamada para o signup com os dados:', data);  // Log para ver os dados enviados
     return this.http.post(`${this.apiUrl}/signup`, data);
   }
   
-
-  // Método para fazer o signin
   signin(data: any): Observable<any> {
-    console.log('Enviando dados para signin:', data);  // Log para verificar os dados
     return this.http.post(`${this.apiUrl}/signin`, data);
+  }
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  setUsername(username: string): void {
+    this.cookieService.set('username', username); // Salva o username no cookie
+  }
+
+  getUsername(): string {
+    return this.cookieService.get('username'); // Obtém o username do cookie
+  }
+
+  removeAuthData(): void {
+    localStorage.removeItem(this.tokenKey);
+    this.cookieService.delete('username'); // Remove o cookie
   }
 }

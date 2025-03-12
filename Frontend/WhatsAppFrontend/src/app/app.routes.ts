@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginComponent } from './login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { ChatComponent } from './chat/chat.component'; // Importando o novo componente de chat
 
-// Definindo as rotas da aplicação
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },
-  // Outras rotas podem ser adicionadas aqui
+  { path: 'cadastro', component: CadastroComponent },
+  { path: 'chat', component: ChatComponent }, // Adicionando a rota para a página de chat
 ];

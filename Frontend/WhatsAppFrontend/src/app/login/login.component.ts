@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Adicionando ReactiveFormsModule
 import { CommonModule } from '@angular/common'; // Importando CommonModule
 import { AuthService } from '../auth.service'; // Importando o AuthService
@@ -10,7 +10,8 @@ import { AuthService } from '../auth.service'; // Importando o AuthService
   imports: [
     FormsModule, // Adicionando FormsModule aos imports
     ReactiveFormsModule, // Adicionando ReactiveFormsModule
-    CommonModule // Adicionando CommonModule para permitir *ngIf
+    CommonModule, // Adicionando CommonModule para permitir *ngIf
+    RouterModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

@@ -1,53 +1,236 @@
+/* Container principal com layout de duas colunas */
+.main-container {
+  display: flex;
+  height: 100vh;
+  max-height: 600px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Sidebar com lista de usuários */
+.sidebar {
+  width: 300px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile {
+  padding: 15px 20px;
+  background-color: #007bff;
+  color: white;
+  border-bottom: 1px solid #0056b3;
+}
+
+.logged-user {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.sidebar h3 {
+  padding: 15px 20px;
+  margin: 0;
+  background-color: #e9ecef;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.user-item {
+  border-bottom: 1px solid #eee;
+}
+
+.user-button {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: white;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-button:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.user-button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+}
+
+.user-name {
+  flex: 1;
+}
+
+.unread-badge {
+  background-color: #dc3545;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.user-button.active .unread-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Área principal do chat */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
 .chat-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.messages-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.received {
+  background-color: #e9ecef;
+  align-self: flex-start;
+  color: #333;
+}
+
+.sent {
+  background-color: #007bff;
+  align-self: flex-end;
+  color: white;
+}
+
+.message-input-container {
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+  display: flex;
+  gap: 10px;
+}
+
+textarea {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+}
+
+textarea:focus {
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.no-chat-selected {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 768px) {
+  .main-container {
+    height: 100vh;
+    max-height: none;
+  }
+  
+  .sidebar {
+    width: 250px;
   }
   
   .message {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    max-width: 80%;
-    word-wrap: break-word;
+    max-width: 85%;
   }
-  
-  .received {
-    background-color: #d4edda; /* Verde claro */
-    align-self: flex-start; /* Alinha à esquerda */
-  }
-  
-  .sent {
-    background-color: #f8d7da; /* Vermelho claro */
-    align-self: flex-end; /* Alinha à direita */
-  }
-  
-  .message-input-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: vertical;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+}
   

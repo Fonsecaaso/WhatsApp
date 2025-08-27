@@ -37,6 +37,7 @@
   
   /* Estilos para os campos de input */
   input[type="email"],
+  input[type="text"],
   input[type="password"] {
     padding: 12px;
     font-size: 1rem;
@@ -48,6 +49,7 @@
   }
   
   input[type="email"]:focus,
+  input[type="text"]:focus,
   input[type="password"]:focus {
     border-color: #4a90e2;  /* Cor de borda quando o campo está em foco */
   }
@@ -80,6 +82,30 @@
     margin-top: 10px;
     font-size: 0.875rem;
     text-align: center;
+  }
+
+  /* Link de navegação entre auth */
+  .auth-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .auth-link p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .auth-link a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .auth-link a:hover {
+    color: #357ab7;
+    text-decoration: underline;
   }
   
   /* Responsividade */

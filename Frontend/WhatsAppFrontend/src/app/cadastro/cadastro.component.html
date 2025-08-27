@@ -32,4 +32,9 @@
 
   <!-- Exibição de mensagens de erro gerais -->
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <!-- Link para login -->
+  <div class="auth-link">
+    <p>Já tem uma conta? <a routerLink="/login">Faça login aqui</a></p>
+  </div>
 </div>

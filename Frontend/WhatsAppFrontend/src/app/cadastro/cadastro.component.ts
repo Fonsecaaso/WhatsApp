@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'; // Importando o AuthService
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']

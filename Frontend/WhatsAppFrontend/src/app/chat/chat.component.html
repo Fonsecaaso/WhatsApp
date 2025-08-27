@@ -2,28 +2,55 @@
   {{ errorMessage }}
 </div>
 
-<div *ngIf="!errorMessage">
-  <!-- Lista de usuários -->
-  <ul>
-    <li *ngFor="let user of users">
-      <button (click)="startConversation(user)">
-        {{ user }}
-      </button>
-    </li>
-  </ul>
-
-  <!-- Container do chat -->
-  <div *ngIf="messages.length" class="chat-container">
-    <div *ngFor="let message of messages" 
-         [ngClass]="{ 'received': message.sender !== authService.getUsername(), 'sent': message.sender === authService.getUsername() }">
-      {{ message.message }}
+<div *ngIf="!errorMessage" class="main-container">
+  <!-- Sidebar com lista de usuários -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <span class="logged-user">{{ authService.getUsername() }}</span>
     </div>
+    <h3>Usuários</h3>
+    <ul class="user-list">
+      <li *ngFor="let user of users" class="user-item">
+        <button 
+          (click)="startConversation(user)" 
+          [class.active]="lastRecipient === user"
+          class="user-button">
+          <span class="user-name">{{ user }}</span>
+          <span 
+            *ngIf="getUnreadCount(user) > 0" 
+            class="unread-badge">
+            {{ getUnreadCount(user) }}
+          </span>
+        </button>
+      </li>
+    </ul>
   </div>
-  
 
-  <!-- Caixa de texto para mensagem e botão de enviar -->
-  <div *ngIf="lastRecipient" class="message-input-container">
-    <textarea [(ngModel)]="messageText" placeholder="Digite sua mensagem..." rows="3"></textarea>
-    <button (click)="sendMessage()">Enviar</button>
+  <!-- Área principal do chat -->
+  <div class="chat-area">
+    <!-- Container do chat -->
+    <div *ngIf="messages.length" class="chat-container">
+      <div class="chat-header">
+        <h4>{{ lastRecipient }}</h4>
+      </div>
+      <div class="messages-container">
+        <div *ngFor="let message of messages" 
+             class="message"
+             [ngClass]="{ 'received': message.sender !== authService.getUsername(), 'sent': message.sender === authService.getUsername() }">
+          {{ message.message }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Caixa de texto para mensagem e botão de enviar -->
+    <div *ngIf="lastRecipient" class="message-input-container">
+      <textarea [(ngModel)]="messageText" placeholder="Digite sua mensagem..." rows="3"></textarea>
+      <button (click)="sendMessage()">Enviar</button>
+    </div>
+
+    <!-- Placeholder quando nenhum usuário está selecionado -->
+    <div *ngIf="!lastRecipient" class="no-chat-selected">
+      <p>Selecione um usuário para iniciar uma conversa</p>
+    </div>
   </div>
 </div>

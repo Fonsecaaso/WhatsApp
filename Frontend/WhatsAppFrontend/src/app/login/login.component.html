@@ -1,11 +1,26 @@
-<form (ngSubmit)="onLogin()">
-  <label for="username">Nome de usuário:</label> <!-- Alterado de email para username -->
-  <input type="text" id="username" [(ngModel)]="loginData.username" name="username" required />
-  
-  <label for="password">Senha:</label>
-  <input type="password" id="password" [(ngModel)]="loginData.password" name="password" required />
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <label for="username">Nome de usuário:</label>
+    <input type="text" id="username" [(ngModel)]="loginData.username" name="username" required #username="ngModel" />
+    <div *ngIf="username.invalid && username.touched" class="error">
+      O nome de usuário é obrigatório.
+    </div>
+    
+    <label for="password">Senha:</label>
+    <input type="password" id="password" [(ngModel)]="loginData.password" name="password" required #password="ngModel" />
+    <div *ngIf="password.invalid && password.touched" class="error">
+      A senha é obrigatória.
+    </div>
 
-  <button type="submit">Entrar</button>
-  
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div> <!-- Exibindo a mensagem de erro -->
-</form>
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+
+  <!-- Exibição de mensagens de erro gerais -->
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <!-- Link para cadastro -->
+  <div class="auth-link">
+    <p>Não tem uma conta? <a routerLink="/cadastro">Cadastre-se aqui</a></p>
+  </div>
+</div>
